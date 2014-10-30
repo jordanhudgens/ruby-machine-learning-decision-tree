@@ -1,0 +1,65 @@
+<h1>Listing vehicles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Unit</th>
+      <th>Year</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Plate</th>
+      <th>Mileage</th>
+      <th>Vin</th>
+      <th>Category</th>
+      <th>Color</th>
+      <th>Status</th>
+      <th>Equipment</th>
+      <th>Fuel</th>
+      <th>Weight</th>
+      <th>Transmission</th>
+      <th>Custom</th>
+      <th>Purchase code</th>
+      <th>Purchase price</th>
+      <th>Start cost</th>
+      <th>Virtual meter</th>
+      <th>Repairs</th>
+      <th>Services</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vehicles.each do |vehicle| %>
+      <tr>
+        <td><%= vehicle.unit %></td>
+        <td><%= vehicle.year %></td>
+        <td><%= vehicle.make %></td>
+        <td><%= vehicle.model %></td>
+        <td><%= vehicle.plate %></td>
+        <td><%= vehicle.mileage %></td>
+        <td><%= vehicle.vin %></td>
+        <td><%= vehicle.category %></td>
+        <td><%= vehicle.color %></td>
+        <td><%= vehicle.status %></td>
+        <td><%= vehicle.equipment %></td>
+        <td><%= vehicle.fuel %></td>
+        <td><%= vehicle.weight %></td>
+        <td><%= vehicle.transmission %></td>
+        <td><%= vehicle.custom %></td>
+        <td><%= vehicle.purchase_code %></td>
+        <td><%= vehicle.purchase_price %></td>
+        <td><%= vehicle.start_cost %></td>
+        <td><%= vehicle.virtual_meter %></td>
+        <td><%= vehicle.repairs %></td>
+        <td><%= vehicle.services %></td>
+        <td><%= link_to 'Show', vehicle %></td>
+        <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
+        <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vehicle', new_vehicle_path %>

@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  unit: MyString
+  year: 1
+  make: MyString
+  model: MyString
+  plate: MyString
+  mileage: 1
+  vin: MyString
+  category: MyString
+  color: MyString
+  status: MyString
+  equipment: MyString
+  fuel: MyString
+  weight: 1
+  transmission: MyString
+  custom: MyString
+  purchase_code: 1
+  purchase_price: 9.99
+  start_cost: 9.99
+  virtual_meter: 1
+  repairs: 1
+  services: 1
+
+two:
+  unit: MyString
+  year: 1
+  make: MyString
+  model: MyString
+  plate: MyString
+  mileage: 1
+  vin: MyString
+  category: MyString
+  color: MyString
+  status: MyString
+  equipment: MyString
+  fuel: MyString
+  weight: 1
+  transmission: MyString
+  custom: MyString
+  purchase_code: 1
+  purchase_price: 9.99
+  start_cost: 9.99
+  virtual_meter: 1
+  repairs: 1
+  services: 1
