@@ -5,6 +5,11 @@ class VehiclesController < ApplicationController
   # GET /vehicles.json
   def index
     @vehicles = Vehicle.all
+
+    respond_to do |format|
+      format.html
+      format.csv { render text: @vehicles.to_csv }
+    end
   end
 
   # GET /vehicles/1
@@ -59,6 +64,12 @@ class VehiclesController < ApplicationController
       format.html { redirect_to vehicles_url, notice: 'Vehicle was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # Importer
+  def import
+    Vehicle.import(params[:file])
+    redirect_to vehicles_path, notice: "Companies Added Successfully"
   end
 
   private

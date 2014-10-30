@@ -48,3 +48,5 @@ gem 'spring',        group: :development
 # For decision tree
 gem 'decisiontree'
 
+
+gem 'quiet_assets', group: :development
