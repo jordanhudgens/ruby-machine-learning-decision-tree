@@ -63,3 +63,11 @@
 <br>
 
 <%= link_to 'New Vehicle', new_vehicle_path %>
+
+<hr>
+
+<h3>Import Vehicles</h3>
+<%= form_tag import_vehicles_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Upload Vehicles", class: 'btn btn-default' %>
+<% end %>
