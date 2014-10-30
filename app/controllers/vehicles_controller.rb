@@ -5,6 +5,7 @@ class VehiclesController < ApplicationController
   # GET /vehicles.json
   def index
     @vehicles = Vehicle.all
+    @historical_data_set = Vehicle.all
 
     respond_to do |format|
       format.html

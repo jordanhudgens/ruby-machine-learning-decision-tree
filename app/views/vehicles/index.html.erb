@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Historical</th>
       <th>Unit</th>
       <th>Year</th>
       <th>Make</th>
@@ -31,6 +32,7 @@
   <tbody>
     <% @vehicles.each do |vehicle| %>
       <tr>
+        <td><%= vehicle.historical %></td>
         <td><%= vehicle.unit %></td>
         <td><%= vehicle.year %></td>
         <td><%= vehicle.make %></td>

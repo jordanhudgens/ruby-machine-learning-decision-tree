@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030224805) do
+ActiveRecord::Schema.define(version: 20141030232643) do
 
   create_table "vehicles", force: true do |t|
     t.string   "unit"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141030224805) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "purchase_meter"
+    t.boolean  "historical"
   end
 
 end
