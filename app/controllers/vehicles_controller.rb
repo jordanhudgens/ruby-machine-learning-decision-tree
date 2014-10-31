@@ -4,8 +4,47 @@ class VehiclesController < ApplicationController
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.all
-    @historical_data_set = Vehicle.all
+    # Make the queries from the database
+    @displayed_vehicles = Vehicle.all
+    historical_data_set = Vehicle.where(historical: true)
+    vehicles = Vehicle.where(historical: false)
+
+    # Convert the query results to
+    converted_historical = historical_data_set.map { |h| [h[:year], h[:make], h[:mileage], h[:fuel], h[:repairs], h[:services], h[:status]]}
+    converted_vehicles = vehicles.map { |h| [h[:year], h[:make], h[:mileage], h[:fuel], h[:repairs], h[:services], h[:status]]}
+
+    # Instantiate the tree, and train it based on the data (set default to '1')
+    attributes = ['year', 'make', 'mileage', 'fuel', 'repairs', 'services']
+    dec_tree = DecisionTree::ID3Tree.new(attributes, converted_historical, 'Retired', year: :discrete, make: :discrete, mileage: :continuous, fuel: :discrete, repairs: :continuous, services: :continuous)
+    dec_tree.train
+
+    test = [2013, "Ford", 120000, "Gasoline", 2, 12, 'Retired']
+
+    # Generate decision
+    puts dec_tree.predict(test)
+
+
+
+    # attributes = ['Temperature']
+    # training = [
+    #     [36.6, 'healthy'],
+    #     [37, 'sick'],
+    #     [38, 'sick'],
+    #     [36.7, 'healthy'],
+    #     [40, 'sick'],
+    #     [50, 'really sick'],
+    # ]
+    #
+    # dec_tree = DecisionTree::ID3Tree.new(attributes, training, 'sick', :continuous)
+    # dec_tree.train
+    #
+    # test = [37, 'sick']
+    # decision = dec_tree.predict(test)
+    # p training
+    # puts "Predicted: #{decision} ... True decision: #{test.last}"
+
+
+
 
     respond_to do |format|
       format.html
