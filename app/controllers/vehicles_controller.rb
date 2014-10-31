@@ -21,7 +21,10 @@ class VehiclesController < ApplicationController
     test = [2013, "Ford", 120000, "Gasoline", 2, 12, 'Retired']
 
     # Generate decision
-    puts dec_tree.predict(test)
+    converted_vehicles.each do |vehicle|
+      puts "Year: #{vehicle.first} #{vehicle[1]} Actual: #{vehicle[6]} -  Predicted: #{dec_tree.predict(vehicle)}"
+    end
+
 
 
 
