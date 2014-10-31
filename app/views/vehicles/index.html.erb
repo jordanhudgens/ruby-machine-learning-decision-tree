@@ -1,4 +1,4 @@
-
+<%= link_to 'Download CSV', vehicles_path(format: :csv) %>
 
       <table class="table table-hover table-striped table-condensed">
         <thead>
@@ -22,6 +22,9 @@
             Status
           </th>
           <th>
+            Prediction
+          </th>
+          <th>
           </th>
         </tr>
         </thead>
@@ -34,6 +37,10 @@
               <td><%= vehicle.model %></td>
               <td><%= vehicle.plate %></td>
               <td><%= vehicle.status %></td>
+              <td>
+                <%= vehicle.prediction %>
+                <%= vehicle.good_prediction? ? 'ok' : 'x' %>
+              </td>
               <td><%= link_to 'Show', vehicle %></td>
               <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
               <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>

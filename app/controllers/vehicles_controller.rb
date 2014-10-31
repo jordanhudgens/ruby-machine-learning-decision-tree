@@ -6,26 +6,6 @@ class VehiclesController < ApplicationController
   def index
     # Make the queries from the database
     @displayed_vehicles = Vehicle.all
-    historical_data_set = Vehicle.where(historical: true)
-    vehicles = Vehicle.where(historical: false)
-
-    # Convert the query results to
-    converted_historical = historical_data_set.map { |h| [h[:year], h[:make], h[:mileage], h[:fuel], h[:repairs], h[:services], h[:status]]}
-    converted_vehicles = vehicles.map { |h| [h[:year], h[:make], h[:mileage], h[:fuel], h[:repairs], h[:services], h[:status]]}
-
-    # Instantiate the tree, and train it based on the data (set default to '1')
-    attributes = ['year', 'make', 'mileage', 'fuel', 'repairs', 'services']
-    dec_tree = DecisionTree::ID3Tree.new(attributes, converted_historical, 'Retired', year: :discrete, make: :discrete, mileage: :continuous, fuel: :discrete, repairs: :continuous, services: :continuous)
-    dec_tree.train
-
-    test = [2013, "Ford", 120000, "Gasoline", 2, 12, 'Retired']
-
-    # Generate decision
-    converted_vehicles.each do |vehicle|
-      puts "Year: #{vehicle.first} #{vehicle[1]} Actual: #{vehicle[6]} -  Predicted: #{dec_tree.predict(vehicle)}"
-    end
-
-
 
 
     # attributes = ['Temperature']
@@ -48,10 +28,9 @@ class VehiclesController < ApplicationController
 
 
 
-
     respond_to do |format|
       format.html
-      format.csv { render text: @vehicles.to_csv }
+      format.csv { render text: Vehicle.to_csv(@displayed_vehicles.reject(&:good_prediction?)) }
     end
   end
 
