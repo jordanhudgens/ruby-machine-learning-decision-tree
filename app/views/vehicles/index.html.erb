@@ -4,9 +4,6 @@
         <thead>
         <tr>
           <th>
-            Historical
-          </th>
-          <th>
             Year
           </th>
           <th>
@@ -31,7 +28,6 @@
         <tbody>
         <% @displayed_vehicles.each do |vehicle| %>
             <tr>
-              <td><%= vehicle.historical %></td>
               <td><%= vehicle.year %></td>
               <td><%= vehicle.make %></td>
               <td><%= vehicle.model %></td>
