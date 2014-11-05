@@ -38,8 +38,9 @@
               <td><%= vehicle.plate %></td>
               <td><%= vehicle.status %></td>
               <td>
-                <%= vehicle.prediction %>
-                <%= vehicle.good_prediction? ? 'ok' : 'x' %>
+                  <span class="label <%= vehicle.good_prediction? ? 'label-success' : 'label-danger' %>">
+                    <%= vehicle.good_prediction? ? 'Accurate' : 'Needs Attention' %>
+                  </span>
               </td>
               <td><%= link_to 'Show', vehicle %></td>
               <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
