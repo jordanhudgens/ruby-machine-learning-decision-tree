@@ -1,64 +1,77 @@
-<%= link_to 'Download CSV', vehicles_path(format: :csv) %>
+<span class="pull-left">
+  <%= link_to 'Add a New Vehicle', new_vehicle_path %>
+</span>
+<span class="pull-right">
+  <%= link_to 'Download CSV', vehicles_path(format: :csv) %>
+</span>
 
-      <table class="table table-hover table-striped table-condensed">
-        <thead>
-        <tr>
-          <th>
-            Unit ID
-          </th>
-          <th>
-            Year
-          </th>
-          <th>
-            Make
-          </th>
-          <th>
-            Model
-          </th>
-          <th>
-            Plate
-          </th>
-          <th>
-            Status
-          </th>
-          <th>
-            Prediction
-          </th>
-          <th>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @displayed_vehicles.each do |vehicle| %>
-            <tr>
-              <td><%= vehicle.unit %></td>
-              <td><%= vehicle.year %></td>
-              <td><%= vehicle.make %></td>
-              <td><%= vehicle.model %></td>
-              <td><%= vehicle.plate %></td>
-              <td><%= vehicle.status %></td>
-              <td>
-                  <span class="label <%= vehicle.good_prediction? ? 'label-success' : 'label-danger' %>">
-                    <%= vehicle.good_prediction? ? 'Accurate' : 'Needs Attention' %>
-                  </span>
-              </td>
-              <td><%= link_to 'Show', vehicle %></td>
-              <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
-              <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+<br>
+<br>
+<table class="table table-hover table-striped table-condensed">
+  <thead>
+  <tr>
+    <th>
+      Unit ID
+    </th>
+    <th>
+      Year
+    </th>
+    <th>
+      Make
+    </th>
+    <th>
+      Model
+    </th>
+    <th>
+      Plate
+    </th>
+    <th>
+      Status
+    </th>
+    <th>
+      Prediction
+    </th>
+    <th>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @displayed_vehicles.each do |vehicle| %>
+      <tr>
+        <td><%= vehicle.unit %></td>
+        <td><%= vehicle.year %></td>
+        <td><%= vehicle.make %></td>
+        <td><%= vehicle.model %></td>
+        <td><%= vehicle.plate %></td>
+        <td><%= vehicle.status %></td>
+        <td>
+          <span class="label <%= vehicle.good_prediction? ? 'label-success' : 'label-danger' %>">
+            <%= vehicle.good_prediction? ? 'Accurate' : 'Needs Attention' %>
+          </span>
+        </td>
+        <td><%= link_to 'Show', vehicle %></td>
+        <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
+        <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
 
 
-<%= link_to 'New Vehicle', new_vehicle_path %>
+
 
 <hr>
 
-<h3>Import Vehicles</h3>
-<%= form_tag import_vehicles_path, multipart: true do %>
-    <%= file_field_tag :file %><br>
-    <%= submit_tag "Upload Vehicles", class: 'btn btn-default' %>
-<% end %>
+<div class="well">
+  <h3>Import Vehicles</h3>
+  <em>Only upload with correct column headings</em>
+  <br>
+  <br>
+  <%= form_tag import_vehicles_path, multipart: true do %>
+      <%= file_field_tag :file %><br>
+      <%= submit_tag "Upload Vehicles", class: 'btn btn-default' %>
+  <% end %>
+</div>
+
 
 <hr>
