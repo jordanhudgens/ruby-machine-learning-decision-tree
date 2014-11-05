@@ -4,6 +4,9 @@
         <thead>
         <tr>
           <th>
+            Unit ID
+          </th>
+          <th>
             Year
           </th>
           <th>
@@ -28,6 +31,7 @@
         <tbody>
         <% @displayed_vehicles.each do |vehicle| %>
             <tr>
+              <td><%= vehicle.unit %></td>
               <td><%= vehicle.year %></td>
               <td><%= vehicle.make %></td>
               <td><%= vehicle.model %></td>
